@@ -1,0 +1,37 @@
+{
+  "name": "matcha",
+  "version": "1.0.0",
+  "description": "Matcha - Above the game",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jouzo/Matcha.git"
+  },
+  "keywords": [
+    "Dating",
+    "love",
+    "game",
+    "match",
+    "matchmaking",
+    "friends",
+    "bliss"
+  ],
+  "author": "jdescler && mmovahhe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jouzo/Matcha/issues"
+  },
+  "homepage": "https://github.com/Jouzo/Matcha#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
