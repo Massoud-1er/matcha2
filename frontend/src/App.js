@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar/NavBar';
-import LoginForm from './UserGestion/LoginForm';
-
+import CArd from './profile_match/Card';
 
 class App extends Component {
 state = {
@@ -16,7 +15,7 @@ state = {
   }
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
-    const response = await fetch('/login');
+    const response = await fetch('/express_backend');
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -27,16 +26,10 @@ state = {
 
   render() {
     return (
-      <div className="app">
+      // <test/>
+      <div>
       <NavBar/>
-    {/* </div> */}
-    {/* <div> */}
-    <LoginForm/>
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-         Render the newly fetched data inside of this.state.data 
-        <p className="App-intro">{this.state.data}</p>
+      <CArd/>
       </div>
     );
   }

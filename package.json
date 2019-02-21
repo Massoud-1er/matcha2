@@ -34,7 +34,7 @@
     "express-fileupload": "^1.1.1-alpha.3",
     "express-session": "^1.15.6",
     "is-empty": "^1.2.0",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^8.5.0",
     "lodash": "^4.17.11",
     "mariadb": "^2.0.3",
     "morgan": "^1.9.1",
