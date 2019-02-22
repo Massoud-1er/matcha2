@@ -7,6 +7,7 @@ exports.connect = function() {
     password : 'rootme',
     database : 'matcha'
     });
+    console.log("salut db");
     connection.connect(function(err){
     if(!err) {
         console.log("Database is connected ... nn");

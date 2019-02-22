@@ -2,15 +2,19 @@ var connect_to_db = require('../db/connect');
 const connection = connect_to_db.connect();
 
 exports.register = function(req,res){
-    console.log("req",req.body);
-    var today = new Date();
+  console.log("dede");  
+  console.log(req.body);
     var users={
-      "login":req.body.first_name,
+      "first_name":req.body.firstName,
+      "last_name":req.body.lastName,
       "mail":req.body.email,
       "passwd":req.body.password,
+      "birthday":req.body.birthday,
     }
-    connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
-    if (error) {
+    console.log(users);
+    let sql = 'INSERT INTO users SET ?';
+    connection.query(sql, users, (err, results) => {
+    if (err) {
       console.log("error ocurred",error);
       res.send({
         "code":400,
@@ -23,11 +27,11 @@ exports.register = function(req,res){
         "success":"user registered sucessfully"
           });
     }
-    });
-  }
+  });
+}
 
   exports.login = function(req,res){
-    var email= req.body.login;
+    var login= req.body.login;
     var password = req.body.password;
     connection.query('SELECT * FROM users WHERE login = ?',[login], function (error, results, fields) {
     if (error) {

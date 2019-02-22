@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap'
 
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberOfGuests: 2,
       firstName: "",
       lastName: "",
+      password: "",
+      birthday: "",
+      email: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -22,18 +26,22 @@ class RegisterForm extends Component {
     });
     console.log(target);
   }
+  handleSubmit(event) {
+    event.preventDefault();
+    // const data = new FormData(event.target);
+    fetch('/register', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state)
+    })
+}
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Number of guests:
-          <input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} />
-        </label>
         <label>
           First name:
           <input
@@ -49,7 +57,34 @@ class RegisterForm extends Component {
             type="text"
             value={this.state.lastName}
             onChange={this.handleInputChange} />
+           <label>
+          Email address:
+          <input
+            name="email"
+            type="text"
+            value={this.state.email}
+            onChange={this.handleInputChange} />
         </label>
+        <label>
+          Birthday:
+          <input
+            name="birthday"
+            type="text"
+            value={this.state.birthday}
+            onChange={this.handleInputChange} />
+        </label>
+        <label>
+          Password:
+          <input
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.handleInputChange} />
+        </label>
+        </label>
+        <Button variant="primary" type="submit">
+        Submit
+  </Button>
       </form>
     );
   }
