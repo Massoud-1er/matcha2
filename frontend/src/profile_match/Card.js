@@ -1,16 +1,18 @@
 import React from 'react';
-import {Card, Button} from 'react-bootstrap'
+import {Card} from 'react-bootstrap';
+import ModalBox from './ModalBox';
 
-function CArd() {
-    return (
-        <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={require("./jennifer.jpg")} />
+function CArd(props) {
+
+          return (
+        <Card style={{ width: '18rem' }} >
+  <Card.Img variant="top" src={require("" + props.photo1)} />
   <Card.Body>
-    <Card.Title>Jennifer</Card.Title>
+    <Card.Title>{props.name}</Card.Title>
     <Card.Text>
-      Salut, je m'appelle Jennifer, j'adore la science et l'ecologie !
+      {props.desc}
     </Card.Text>
-    <Button variant="primary">voir le profil</Button>
+      <ModalBox {...props}/>
   </Card.Body>
 </Card>
     );

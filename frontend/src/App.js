@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar/NavBar';
-import CArd from './profile_match/Card';
+import AddCard from './profile_match/AddCard';
+import NavBar from './components/NavBar';
+// import ModalBox from './profile_match/ModalBox';
+// import ModalBoxB from './profile_match/ModalBoxBis';
+// import ControlledCarousel from './profile_match/carousel';
 
 class App extends Component {
 state = {
@@ -25,11 +28,17 @@ state = {
   };
 
   render() {
+    // var user = {
+    //   name: "test"
+    // }
     return (
-      // <test/>
-      <div>
-      <NavBar/>
-      <CArd/>
+      <div><NavBar/>
+      <p className="App-intro">{this.state.data}</p>
+      <span>
+        <AddCard/>
+        {/* <ControlledCarousel/> */}
+        {/* <ModalBox /> */}
+      </span>
       </div>
     );
   }
