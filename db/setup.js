@@ -1,4 +1,3 @@
-const express = require('express');
 const mysql = require('mysql');
 
 // Create connection
@@ -16,8 +15,6 @@ db.connect((err) => {
     }
     console.log('MySql Connected...');
 });
-
-const app = express();
 
 // Create DB
     let sql = 'CREATE DATABASE IF NOT EXISTS matcha';
@@ -114,6 +111,3 @@ app.get('/deletepost/:id', (req, res) => {
     });
 });
 */
-app.listen('3000', () => {
-    console.log('Server started on port 3000');
-});

@@ -17,12 +17,10 @@ app.get('/express_backend', (req, res) => {
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
-
 app.post('/register', (req, res) => {
   console.log(req.body);
   console.log("i registered");
   account.register(req, res);
-  // res.send({account: register);
 });
 
 
