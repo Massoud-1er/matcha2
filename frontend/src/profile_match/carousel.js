@@ -11,7 +11,6 @@ class ControlledCarousel extends React.Component {
         index: 0,
         direction: null,
       };
-      console.log(props);
     }
   
     handleSelect(selectedIndex, e) {
@@ -22,28 +21,35 @@ class ControlledCarousel extends React.Component {
     }
     render() {
       const { index, direction } = this.state;
-  
+      // this.props.photo.map(proj => {
+        // console.log(proj);
+      // });
       return (
         <Carousel
           activeIndex={index}
           direction={direction}
           onSelect={this.handleSelect}
         >
+        {/* {this.props.photo.map(proj => { */}
+
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={require("" + this.props.photo1)}
+              src={require("" + this.props.photo[0])}
               alt="First slide"
-            />
-            <Carousel.Caption>
+              />
+            {/* <Carousel.Caption>
               {/* <h3>First slide label</h3> */}
               {/* <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
-            </Carousel.Caption>
+            {/* </Carousel.Caption> */}
           </Carousel.Item>
+             {/* })} */}
+
+            
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={require("" + this.props.photo2)}
+              src={require("" + this.props.photo[1])}
               alt="Third slide"
             />
   
@@ -55,9 +61,9 @@ class ControlledCarousel extends React.Component {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={require("" + this.props.photo3)}              
+              src={require("" + this.props.photo[2])}              
               alt="Third slide"
-            />
+            /> */}
   
             <Carousel.Caption>
               {/* <h3>Third slide label</h3> */}
@@ -66,7 +72,7 @@ class ControlledCarousel extends React.Component {
               {/* </p> */}
             </Carousel.Caption>
           </Carousel.Item>
-        </Carousel>
+         </Carousel>
       );
     }
   }

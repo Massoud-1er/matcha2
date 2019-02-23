@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'rootme',
+    password : 'rootme'
     // database : 'nodemysql'
 });
 
@@ -49,6 +49,12 @@ const app = express();
         console.log(result);
         console.log("table comment created");
     });
+
+//     let sql4 = "INSERT INTO matcha.user (login, passwd, mail) VALUES ('dede', 'didi', 'dada')";
+// db.query(sql4, (err, result) => {
+//     if(err) throw err;
+//     console.log(result);
+// });
 /*
 // Insert post 1
 app.get('/addpost1', (req, res) => {

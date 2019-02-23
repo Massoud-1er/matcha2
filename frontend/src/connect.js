@@ -1,11 +1,12 @@
 
 exports.connect = function() {
     var mysql      = require('mysql');
+
     var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'rootme',
-    database : 'matcha'
+        host     : 'localhost',
+        user     : 'root',
+        password : 'rootme',
+        database : 'matcha'
     });
     connection.connect(function(err){
     if(!err) {
@@ -14,5 +15,5 @@ exports.connect = function() {
     } else {
         console.log("Error connecting database ... nn");
     }
-    });
+    });    
 }
