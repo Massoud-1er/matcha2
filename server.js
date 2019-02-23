@@ -18,7 +18,6 @@ app.get('/express_backend', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  console.log(req.body);
   console.log("i registered");
   account.register(req, res);
 });

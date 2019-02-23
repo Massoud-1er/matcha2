@@ -1,7 +1,21 @@
-
 exports.register = function (req, res) {
-  var connect_to_db = require('../db/connect');
-  const connection = connect_to_db.connect();
+  // var connect_to_db = require('../db/connect');
+  // const connection = connect_to_db.connect();
+  var mysql      = require('mysql');
+  var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'rootme',
+  database : 'matcha'
+  });
+  connection.connect(function(err){
+  if(!err) {
+      console.log("Database is connected ... nn");
+  } else {
+      console.log("Error connecting database ... nn");
+  }
+  });
+  console.log(req);
   var users = {
     "first_name": req.body.firstName,
     "last_name": req.body.lastName,
@@ -9,6 +23,12 @@ exports.register = function (req, res) {
     "passwd": req.body.password,
     // "birthday":req.body.birthday,
   }
+  for(var key in users) {
+    users[key] = users[key].trim();
+    console.log(users[key]);
+}
+  // users = Object.values(users).slice(0, -1).map(e=>e.trim());
+  console.log(users);
   let sql = "INSERT INTO user SET ?";
   connection.query(sql, users, (err, results) => {
     if (err) {

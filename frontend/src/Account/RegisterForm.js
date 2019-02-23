@@ -28,9 +28,9 @@ class RegisterForm extends Component {
     this.state = {
       firstName: "",
       lastName: "",
+      email: "",
       password: "",
       birthday: "",
-      email: "",
       errors: [],
     };
 
@@ -42,7 +42,6 @@ class RegisterForm extends Component {
     const target = event.target;
     const value =  target.value;
     const name = target.name;
-    // console.log(value);
     this.setState({
       [name]: value
     });
@@ -50,10 +49,7 @@ class RegisterForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     // const data = new FormData(event.target);
-    var arr = Object.values(this.state).slice(0, -1).map(e=>e.trim());
-    console.log(arr);
     const { firstName, lastName, email, password } = this.state;
-    console.log(firstName);
     const errors = validate(firstName, lastName, email, password);
     if (errors.length > 0) {
       this.setState({ errors });
@@ -75,7 +71,7 @@ class RegisterForm extends Component {
       <form onSubmit={this.handleSubmit}>
       {errors.map(error => (
           <p key={error}>Error: {error}</p>
-        ))}
+        ))};
         <label>
           First name:
           <input
