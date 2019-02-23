@@ -1,6 +1,27 @@
 import React, { Component } from 'react';
 import {Button} from 'react-bootstrap'
 
+function validate(firstName, lastName, email, password) {
+  const errors = [];
+
+  if (firstName.length === 0 || lastName.length === 0) {
+    errors.push("Name can't be empty");
+  }
+  if (email.length < 5) {
+    errors.push("Email should be at least 5 charcters long");
+  }
+  if (email.split("").filter(x => x === "@").length !== 1) {
+    errors.push("Email should contain one and only one @");
+  }
+  if (email.indexOf(".") === -1) {
+    errors.push("Email should contain at least one dot");
+  }
+  if (password.length < 6) {
+    errors.push("Password should be at least 6 characters long");
+  }
+  return errors;
+}
+
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +31,7 @@ class RegisterForm extends Component {
       password: "",
       birthday: "",
       email: "",
+      errors: [],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -20,15 +42,23 @@ class RegisterForm extends Component {
     const target = event.target;
     const value =  target.value;
     const name = target.name;
-
+    // console.log(value);
     this.setState({
       [name]: value
     });
-    console.log(target);
   }
   handleSubmit(event) {
     event.preventDefault();
     // const data = new FormData(event.target);
+    var arr = Object.values(this.state).slice(0, -1).map(e=>e.trim());
+    console.log(arr);
+    const { firstName, lastName, email, password } = this.state;
+    console.log(firstName);
+    const errors = validate(firstName, lastName, email, password);
+    if (errors.length > 0) {
+      this.setState({ errors });
+      return;
+    }
     fetch('/register', {
       method: 'POST',
       headers: {
@@ -40,8 +70,12 @@ class RegisterForm extends Component {
 }
 
   render() {
+    const { errors } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
+      {errors.map(error => (
+          <p key={error}>Error: {error}</p>
+        ))}
         <label>
           First name:
           <input
