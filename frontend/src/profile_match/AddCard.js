@@ -1,23 +1,21 @@
 import CArd from './Card';
 import React from 'react';
+// import getUser from '../../../Userdb';
 
-function AddCard() {
-    
+function AddCard(props) {
+//console.log(props.props.id);
+console.log(props);
+  // getUser(1);
     var user = {
-        name: "freda",
-        desc: "j'aime le caca",
-        photo: ["./julie1.jpg", "./julie2.jpg", "./julie3.jpg"]
-      };
-    var user1 = {
-        name: "natalie",
-        desc: "je ne sais quoi faire",
+        name: props.props.first_name,
+        intro: props.props.intro,
+        desc : props.props.description,
         photo: ["./natalie1.jpg", "./natalie2.jpg",  "./natalie3.jpg"]
       };
 
         return (
           <div>
     <CArd {...user}/>
-    <CArd {...user1}/>
     </div>
       );
     }

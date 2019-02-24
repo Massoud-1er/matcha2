@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AddCard from './profile_match/AddCard';
 import NavBar from './components/NavBar';
 // import ModalBox from './profile_match/ModalBox';
 // import ModalBoxB from './profile_match/ModalBoxBis';
@@ -35,7 +34,6 @@ state = {
       <div><NavBar/>
       <p className="App-intro">{this.state.data}</p>
       <span>
-        <AddCard/>
         {/* <ControlledCarousel/> */}
         {/* <ModalBox /> */}
       </span>

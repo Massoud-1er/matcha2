@@ -3,8 +3,7 @@ import {Card} from 'react-bootstrap';
 import ModalBox from './ModalBox';
 
 function CArd(props) {
-
-          return (
+  return (
         <Card style={{ width: '18rem' }} >
   <Card.Img variant="top" src={require("" + props.photo[0])} />
   <Card.Body>

@@ -4,6 +4,7 @@ import Home from './Home';
 import About from './About';
 import Contact from './Contact';
 import Account from './Account';
+import Profile from './Profile';
 
 function NavBar() {
   return (
@@ -16,7 +17,7 @@ function NavBar() {
         <li><Link to={'/contact'} className="nav-link">Contact</Link></li>
         <li><Link to={'/about'} className="nav-link">About</Link></li>
         <li><Link to={'/Account'} className="nav-link">Account</Link></li>
-
+        <li><Link to={'/Profile'} className="nav-link">Profile</Link></li>
       </ul>
       </nav>
       <hr />
@@ -25,6 +26,7 @@ function NavBar() {
           <Route path='/contact' component={Contact} />
           <Route path='/about' component={About} />
           <Route path='/Account' component={Account} />
+          <Route path='/Profile' component={Profile} />
 
       </Switch>
     </div>

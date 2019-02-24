@@ -30,7 +30,6 @@ class ControlledCarousel extends React.Component {
           direction={direction}
           onSelect={this.handleSelect}
         >
-        {/* {this.props.photo.map(proj => { */}
 
           <Carousel.Item>
             <img
@@ -43,9 +42,7 @@ class ControlledCarousel extends React.Component {
               {/* <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
             {/* </Carousel.Caption> */}
           </Carousel.Item>
-             {/* })} */}
 
-            
           <Carousel.Item>
             <img
               className="d-block w-100"
@@ -63,7 +60,7 @@ class ControlledCarousel extends React.Component {
               className="d-block w-100"
               src={require("" + this.props.photo[2])}              
               alt="Third slide"
-            /> */}
+            /> 
   
             <Carousel.Caption>
               {/* <h3>Third slide label</h3> */}
