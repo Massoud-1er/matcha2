@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 
 function validate(firstName, lastName, email, password) {
-  const errors = ["", "", "", "","", ""];
+  const errors = Array(6).fill("");
 
   if (firstName.length === 0) {
     errors[0] = "Name can't be empty";
@@ -43,7 +43,6 @@ class RegisterForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleInputChange(event) {
     const target = event.target;
     const value = target.value;
@@ -60,7 +59,6 @@ class RegisterForm extends Component {
     console.log(errors);
     if (!(errors.every(n=>n === ""))) {
       this.setState({ errors });
-      console.log("avant return statement");
       return;
     }
     fetch('/register', {
@@ -74,13 +72,12 @@ class RegisterForm extends Component {
   }
 
   render() {
+  var geolocation = require('../elements/geolocation');
+  console.log(geolocation.getGeolocation());
+
     const { errors } = this.state;
-    console.log("in render", errors);
     return (
       <form onSubmit={this.handleSubmit}>
-        {/* {errors.map(error => (
-          <p key={error}>Error: {error}</p>
-        ))} */}
         <label>
           First name:
           <input
