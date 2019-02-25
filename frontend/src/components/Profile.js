@@ -20,7 +20,7 @@ class Profile extends Component {
             throw Error(body.message) 
         }
         this.setState({data: body});
-        console.log(this.state.data);
+        // console.log(this.state.data);
         return body;
     };
     render() {

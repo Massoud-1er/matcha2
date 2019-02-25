@@ -43,7 +43,7 @@ const app = express();
         // res.send('Posts table created...');
     });
 
-    let sql3 = 'CREATE TABLE IF NOT EXISTS matcha.profil(id int AUTO_INCREMENT, id_user VARCHAR(255), first_name VARCHAR(255), intro VARCHAR(255), description VARCHAR(255), PRIMARY KEY(id))';
+    let sql3 = 'CREATE TABLE IF NOT EXISTS matcha.profil(id int AUTO_INCREMENT, id_user int, first_name VARCHAR(255), sex BOOL, intro VARCHAR(255), description VARCHAR(255), PRIMARY KEY(id))';
     db.query(sql3, (err, result) => {
         if(err) throw err;
         console.log(result);

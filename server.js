@@ -23,7 +23,7 @@ app.get('/express_backend', (req, res) => {
 });
 
 
-//POUR RECUPERER INFOS DB N
+//POUR RECUPERER INFOS DB POUR AFFICHAGE PROFILE
 // // create a GET route
 app.get('/Profile', (req, res) => {
   // console.log(res);
@@ -35,6 +35,20 @@ app.get('/Profile', (req, res) => {
   res.send({ express: JSON.stringify(result)});
   //res.send({ express: result});
 }});});
+
+//POUR RECUPERER INFOS DB POUR MATCHING
+app.get('/Browse', (req, res) => {
+  // console.log(res);
+  var connection = require('./db/connect');
+  let sql = `SELECT * FROM profil WHERE sex = 1`;
+  connection.query(sql, (err, result) => {
+  if(err) throw err;
+  else {
+  res.send({ express: JSON.stringify(result)});
+  //res.send({ express: result});
+}});});
+
+
 
 
 // test route

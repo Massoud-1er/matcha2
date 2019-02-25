@@ -5,6 +5,8 @@ import About from './About';
 import Contact from './Contact';
 import Account from './Account';
 import Profile from './Profile';
+import Browse from './Browse';
+// import Notif from './Notif';
 
 function NavBar() {
   return (
@@ -18,6 +20,8 @@ function NavBar() {
         <li><Link to={'/about'} className="nav-link">About</Link></li>
         <li><Link to={'/Account'} className="nav-link">Account</Link></li>
         <li><Link to={'/Profile'} className="nav-link">Profile</Link></li>
+        <li><Link to={'/Browse'} className="nav-link">Browse</Link></li>
+        {/* <div id="root"></div> */}
       </ul>
       </nav>
       <hr />
@@ -27,8 +31,10 @@ function NavBar() {
           <Route path='/about' component={About} />
           <Route path='/Account' component={Account} />
           <Route path='/Profile' component={Profile} />
+          <Route path='/Browse' component={Browse} />
 
       </Switch>
+      {/* <Notif /> */}
     </div>
   </Router>
   );
