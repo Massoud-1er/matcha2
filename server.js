@@ -6,12 +6,13 @@ var bodyParser = require('body-parser');
 const uuid = require('uuid/v4');
 const session = require('express-session');
 var redisStore = require('connect-redis')(session);
+const expressSanitizer = require('express-sanitizer');
 
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(expressSanitizer());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -43,7 +44,8 @@ app.get('/express_backend', (req, res) => {
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
-// create the login get and post routes
+//  Login POST and GET routes
+
 app.get('/login', (req, res) => {
   console.log('Inside GET /login callback function')
   console.log(req.sessionID)
@@ -58,10 +60,25 @@ app.post('/login', (req, res) => {
   // res.send(`You posted to the login page!\n`)
 })
 
+// Logout -> destroy session
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.send("logout success!");
+});
+
 app.post('/register', (req, res) => {
   console.log("i registered");
   account.register(req, res);
 });
+
+app.get('/confirmation/*', (req, res)=>{
+  console.log("i confirmed");
+  console.log(req.path);
+  console.log(req.sanitize('email'));
+  account.verify(req, res);
+  // res.redirect('/');
+})
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));

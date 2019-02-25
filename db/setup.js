@@ -25,7 +25,7 @@ db.connect((err) => {
     });
 
 // Create table
-    let sql1 = 'CREATE TABLE IF NOT EXISTS matcha.user(id int AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), passwd VARCHAR(255), mail VARCHAR(255), PRIMARY KEY(id))';
+    let sql1 = 'CREATE TABLE IF NOT EXISTS matcha.user(id int AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), passwd VARCHAR(255), mail VARCHAR(255), isVerified BOOLEAN NOT NULL DEFAULT 0, PRIMARY KEY(id))';
     db.query(sql1, (err, result) => {
         if(err) throw err;
         console.log(result);
@@ -45,6 +45,13 @@ db.connect((err) => {
         if(err) throw err;
         console.log(result);
         console.log("table comment created");
+    });
+
+    let sql4 = 'CREATE TABLE IF NOT EXISTS matcha.verification(id int AUTO_INCREMENT, token VARCHAR(255), mail VARCHAR(255), PRIMARY KEY(id))';
+    db.query(sql4, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+        console.log("table verification created");
     });
 /*
 // Insert post 1

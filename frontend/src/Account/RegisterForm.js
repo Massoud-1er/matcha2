@@ -72,9 +72,6 @@ class RegisterForm extends Component {
   }
 
   render() {
-  var geolocation = require('../elements/geolocation');
-  console.log(geolocation.getGeolocation());
-
     const { errors } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
