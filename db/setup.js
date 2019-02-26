@@ -47,7 +47,7 @@ db.connect((err) => {
         console.log("table comment created");
     });
 
-    let sql4 = 'CREATE TABLE IF NOT EXISTS matcha.verification(id int AUTO_INCREMENT, token VARCHAR(255), mail VARCHAR(255), PRIMARY KEY(id))';
+    let sql4 = 'CREATE TABLE IF NOT EXISTS matcha.verification(id int AUTO_INCREMENT, token VARCHAR(255), reinitToken VARCHAR(255), mail VARCHAR(255), PRIMARY KEY(id))';
     db.query(sql4, (err, result) => {
         if(err) throw err;
         console.log(result);

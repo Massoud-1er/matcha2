@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
+import LogoutButton from '../elements/logout';
+import ResetPw from '../elements/resetPw';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -57,6 +59,9 @@ class LoginForm extends Component {
         Submit
   </Button>
     </Form>
+    <LogoutButton/>
+    <br></br>
+    <ResetPw/>
     </div>
   );}
 }

@@ -2,15 +2,33 @@
 //  Token in table verification
 //
 
-function insertToken(token, mail) {
+function insertToken(token, mail, reinitToken) {
   var connection = require('../db/connect');
   
-  var post = { token: token, mail: mail };
+  var post = { token: token, mail: mail, reinitToken: reinitToken };
   let sql = "INSERT INTO verification SET ?";
   connection.query(sql, post, (err, res) => {
     if (err) {
       throw (err);
     }
+  });
+}
+
+//
+// Reinitialisation Mail
+//
+
+function reinitialisationMail(token, userMail, host) {
+  const sendmail = require('sendmail')();
+  const body = 'Hello,\n\n' + 'Please follow this link to reset your email: \nhttp:\/\/' + host + '\/reset\/' + token + '.\n';
+  sendmail({
+    from: 'no-reply@matcha.com',
+    to: userMail,
+    subject: 'Reset your password !',
+    html: body,
+  }, function (err, reply) {
+    console.log(err && err.stack);
+    console.dir(reply);
   });
 }
 
@@ -75,7 +93,7 @@ exports.register = function (req, res) {
             throw (err);
           }
           else {
-            insertToken(token, users.mail);
+            insertToken(token, users.mail, "");
             registrationMail(token, users.mail, req.headers.host);
           }
         });
@@ -125,14 +143,45 @@ exports.verify = function (req, res) {
   });
 }
 
+exports.reinitialisation = function (req, res) {
+  var crypto = require('crypto');
+  var connection = require('../db/connect');
+  
+  var reinitToken = crypto.randomBytes(16).toString('hex');
+  console.log("in reset");
+
+  var email = req.body.email;
+  connection.query('SELECT * FROM user WHERE mail = ?', [email], function (error, results) {
+    if (error) {
+      console.log("error ocurred", error);
+      results.send({
+        "code": 400,
+        "failed": "error ocurred"
+      });
+    }
+    else {
+      if (results.length > 0) {
+        insertToken("", users.mail, reinitToken);
+        reinitialisationMail(reinitToken, email, req.headers.host);
+          }
+      else {
+        res.send({
+          "code": 204,
+          "success": "Email doest not exist"
+        });
+      }
+    }
+  });
+}
 
 //
 //  Login function
 //
 
-
 exports.login = function (req, res) {
   var connection = require('../db/connect');
+  const bcrypt = require('bcrypt');
+
   var email = req.body.email;
   var password = req.body.password;
   connection.query('SELECT * FROM user WHERE mail = ?', [email], function (error, results, fields) {
@@ -142,27 +191,21 @@ exports.login = function (req, res) {
         "code": 400,
         "failed": "error ocurred"
       })
-      console.log("1");
     } else {
-      console.log('The solution is: ', results);
       if (results.length > 0) {
-        if (results[0].passwd == password) {
-          req.session.user = results[0].mail;
-          // req.session.admin = results[0].admin;
-          res.send({
-            "code": 200,
-            "success": "login sucessfull"
-
-          });
-          console.log("2");
-        }
+          if(bcrypt.compareSync(password, results[0].passwd)){
+            req.session.user = results[0].mail;
+            // req.session.admin = results[0].admin;
+            res.send({
+              "code": 200,
+              "success": "login sucessfull"
+            });
+          }
         else {
           res.send({
             "code": 204,
             "success": "Email and password does not match"
-
           });
-          console.log("3");
         }
       }
       else {
@@ -170,7 +213,6 @@ exports.login = function (req, res) {
           "code": 204,
           "success": "Email does not exits"
         });
-        console.log("4");
       }
     }
   });

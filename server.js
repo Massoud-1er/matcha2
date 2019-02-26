@@ -56,15 +56,18 @@ app.post('/login', (req, res) => {
   console.log('Inside POST /login callback function')
   console.log(req.body);
   account.login(req, res);
-  console.log(req.session);
+  console.log("session", req.session);
   // res.send(`You posted to the login page!\n`)
 })
 
 // Logout -> destroy session
 
-app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.send("logout success!");
+app.post('/logout', (req, res) => {
+  console.log(req.session);  
+  if (req.session){
+    req.session.destroy();}
+    console.log("apres destroy", req.session);
+  res.redirect('/');
 });
 
 app.post('/register', (req, res) => {
@@ -72,12 +75,18 @@ app.post('/register', (req, res) => {
   account.register(req, res);
 });
 
+app.post('/reset', (req, res) => {
+  console.log("i ask for reset");
+  console.log(req.body.email);
+  if (req.body.email)
+  { console.log("inside if");
+    account.reinitialisation(req, res);}
+});
+
 app.get('/confirmation/*', (req, res)=>{
   console.log("i confirmed");
-  console.log(req.path);
-  console.log(req.sanitize('email'));
   account.verify(req, res);
-  // res.redirect('/');
+  res.redirect('/');
 })
 
 // console.log that your server is up and running
