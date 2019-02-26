@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-// import { render } from "react-dom";
+import React from 'react';
 import { positions, Provider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import Hometest from "./Hometest";
+import NotifAlert from './Hometest';
 
 const options = {
   timeout: 3000,
@@ -11,17 +10,8 @@ const options = {
 
 const Appi = () => (
   <Provider template={AlertTemplate} {...options}>
-    <Hometest />
+    <NotifAlert />
   </Provider>
 );
 
-class Notif extends Component {
-  render() {
-  return (
-    <Appi />, 
-    document.getElementById("root")
-    );
-  }
-}
-
-export default Notif;
+export default Appi;

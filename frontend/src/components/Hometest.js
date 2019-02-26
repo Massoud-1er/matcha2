@@ -1,34 +1,20 @@
 import React, { Fragment } from "react";
 import { useAlert } from "react-alert";
 
-const Home = () => {
+const NotifAlert = () => {
   const alert = useAlert();
 
   return (
     <Fragment>
       <button
         onClick={() => {
-          alert.show("Oh look, an alert!");
+          alert.show("michel vous a envoyé un message !");
         }}
       >
-        Show Alert
-      </button>
-      <button
-        onClick={() => {
-          alert.error("You just broke something!");
-        }}
-      >
-        Oops, an error
-      </button>
-      <button
-        onClick={() => {
-          alert.success("It's ok now!");
-        }}
-      >
-        Success!
+        Notification
       </button>
     </Fragment>
   );
 };
 
-export default Home;
+export default NotifAlert;

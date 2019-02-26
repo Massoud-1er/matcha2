@@ -6,12 +6,14 @@ import Contact from './Contact';
 import Account from './Account';
 import Profile from './Profile';
 import Browse from './Browse';
-// import Notif from './Notif';
+import Appi from './Notif';
+import HomePage from './HomePage';
 
 function NavBar() {
   return (
     <Router>
     <div>
+      <Appi />
       <h2>Welcome to Matcha</h2>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <ul className="navbar-nav mr-auto">
@@ -21,7 +23,8 @@ function NavBar() {
         <li><Link to={'/Account'} className="nav-link">Account</Link></li>
         <li><Link to={'/Profile'} className="nav-link">Profile</Link></li>
         <li><Link to={'/Browse'} className="nav-link">Browse</Link></li>
-        {/* <div id="root"></div> */}
+        <li><Link to={'/HomePage'} className="nav-link">HomePage</Link></li>
+      
       </ul>
       </nav>
       <hr />
@@ -32,9 +35,9 @@ function NavBar() {
           <Route path='/Account' component={Account} />
           <Route path='/Profile' component={Profile} />
           <Route path='/Browse' component={Browse} />
+          <Route path='/HomePage' component={HomePage} />
 
       </Switch>
-      {/* <Notif /> */}
     </div>
   </Router>
   );
