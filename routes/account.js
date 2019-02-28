@@ -81,10 +81,7 @@ exports.register = function (req, res) {
       })
     } else {
       if (results.length > 0) {
-        res.send({
-          "code": 204,
-          "success": "This email is already in used"
-        });
+        console.log("This email is already in used");
       }
       else {
         let sql = "INSERT INTO user SET ?";

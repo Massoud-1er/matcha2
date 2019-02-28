@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePageStyle.css';
-
+import RegisterForm from '../Account/RegisterForm'
 
 function HomePage() {
     return (
@@ -8,6 +8,7 @@ function HomePage() {
         <section class="section parallax parallax-1">
   <div class="container">
     <h1>matcha</h1>
+    <RegisterForm />
   </div>
 </section>
 <section class="section content">

@@ -1,48 +1,47 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-
-function validate(firstName, lastName, email, password) {
-  const errors = Array(6).fill("");
-
-  if (firstName.length === 0) {
-    errors[0] = "Name can't be empty";
-    console.log(errors[0]);
-  }
-  if (lastName.length === 0) {
-    errors[1] = "Name can't be empty";
-    console.log(errors[1]);
-  }
-  if (password.length < 6) {
-    errors[2] = "Password should be at least 6 characters long";
-    console.log(errors[3]);
-  }
-  if (email.length < 5) {
-    errors[3] = "Email should be at least 5 charcters long";
-  }
-  if (email.split("").filter(x => x === "@").length !== 1) {
-    errors[4] = "Email should contain one and only one @";
-  }
-  if (email.indexOf(".") === -1) {
-    errors[5] = "Email should contain at least one dot";
-  }
-  return errors;
-}
+import Mail from '../components/multiStepRegister/Mail';
+import UserDetails from '../components/multiStepRegister/UserDetails';
+import Birthdate from '../components/multiStepRegister/Birthdate';
+import Password from '../components/multiStepRegister/Password';
+import Confirmation from '../components/multiStepRegister/Confirmation';
+import Success from '../components/multiStepRegister/Success';
+import Bio from '../components/multiStepRegister/Bio';
+import Genre from '../components/multiStepRegister/Genre';
 
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      step: 1,
       firstName: "",
       lastName: "",
       email: "",
       password: "",
-      birthday: "",
       errors: [],
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
+  nextStep = () => {
+      const { step } = this.state
+      this.setState({
+      step : step + 1
+      })
+    }
+          
+  prevStep = () => {
+      const { step } = this.state
+      this.setState({
+      step : step - 1
+      })
+    }
+
+  handleChange = input => event => {
+    this.setState({ [input] : event.target.value })
+  }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.value;
@@ -53,14 +52,10 @@ class RegisterForm extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    // const data = new FormData(event.target);
+
     const { firstName, lastName, email, password } = this.state;
-    const errors = validate(firstName, lastName, email, password);
-    console.log(errors);
-    if (!(errors.every(n=>n === ""))) {
-      this.setState({ errors });
-      return;
-    }
+    console.log(firstName, lastName, email, password);
+
     fetch('/register', {
       method: 'POST',
       headers: {
@@ -69,61 +64,68 @@ class RegisterForm extends Component {
       },
       body: JSON.stringify(this.state)
     })
+    console.log(this.state);
   }
-
+  
   render() {
-    const { errors } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          First name:
-          <input
-            name="firstName"
-            type="text"
-            value={this.state.firstName}
-            onChange={this.handleInputChange}
+    const {step} = this.state;
+    const { firstName, lastName, email, password} = this.state;
+    const values = { firstName, lastName, email, password };
+    switch(step) {
+      case 1:
+          return <Mail 
+          nextStep={this.nextStep} 
+          handleChange = {this.handleChange}
+          values={values}
           />
-        </label>
-        {errors[0]}
-        <label>
-          Last name:
-          <input
-            name="lastName"
-            type="text"
-            value={this.state.lastName}
-            onChange={this.handleInputChange} />
-        </label>
-        {errors[1]}
-        <label>
-          Email address:
-          <input type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputChange} />
-        </label>
-        {errors[2]}
-        <label>
-          Birthday:
-          <input
-            name="birthday"
-            type="text"
-            value={this.state.birthday}
-            onChange={this.handleInputChange} />
-        </label>
-        {errors[3]}
-        <label>
-          Password:
-          <input
-            name="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInputChange} required />
-        </label>
-        <Button variant="primary" type="submit">
-          Submit
-  </Button>
-      </form>
-    );
+      case 2:
+          return <UserDetails 
+                  nextStep={this.nextStep} 
+                  prevStep={this.prevStep}
+                  handleChange = {this.handleChange}
+                  values={values}
+                  />
+      case 3:
+          return <Birthdate 
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange = {this.handleChange}
+              values={values}
+      />
+      case 4:
+          return <Bio
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              // handleChange = {this.handleChange}
+              values={values}
+      />
+      case 5:
+      return <Genre
+          nextStep={this.nextStep}
+          prevStep={this.prevStep}
+          // handleChange = {this.handleChange}
+          values={values}
+  />
+      case 6:
+          return <form onSubmit={this.handleSubmit}>
+              <Password
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleSubmit={this.handleSubmit}
+              handleChange = {this.handleChange}
+              values={values}
+              />
+               <Button  type="submit">
+               Valider
+           </Button>
+               </form>
+      case 7:
+          return <Success />
+      default:
+          return <h1>oups</h1>
+          
+    }
   }
 }
+
 export default RegisterForm;
