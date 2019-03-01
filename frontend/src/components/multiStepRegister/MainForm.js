@@ -6,6 +6,14 @@ import Success from './Success';
 import Mail from './Mail'
 import Birthdate from './Birthdate';
 
+
+
+
+
+// FICHIER NON UTILISÉ
+
+
+
 class MainForm extends Component {
     state = {
         step: 1,

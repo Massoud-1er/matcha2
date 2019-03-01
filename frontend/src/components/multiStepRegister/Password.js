@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
-import { MDBContainer, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn } from 'mdbreact';
+import { Form } from 'semantic-ui-react';
+import { MDBContainer, MDBCol, MDBCardBody, MDBInput } from 'mdbreact';
 
 function valid(password)
 {
@@ -27,9 +27,9 @@ class Password extends Component{
         const { values } = this.props
         return(
         <Form color='blue' >
-        <MDBContainer>
+        <MDBContainer align="center">
         <MDBCol md="6">
-          <MDBCard>
+          {/* <MDBCard> */}
             <MDBCardBody className="mx-4">
               <div className="text-center">
                 <h3 className="dark-grey-text mb-5">
@@ -45,7 +45,7 @@ class Password extends Component{
                 defaultValue={values.email}
               />
             </MDBCardBody>
-          </MDBCard>
+          {/* </MDBCard> */}
         </MDBCol>
     </MDBContainer>
         </Form>

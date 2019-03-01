@@ -4,10 +4,9 @@ import Mail from '../components/multiStepRegister/Mail';
 import UserDetails from '../components/multiStepRegister/UserDetails';
 import Birthdate from '../components/multiStepRegister/Birthdate';
 import Password from '../components/multiStepRegister/Password';
-import Confirmation from '../components/multiStepRegister/Confirmation';
-import Success from '../components/multiStepRegister/Success';
 import Bio from '../components/multiStepRegister/Bio';
 import Genre from '../components/multiStepRegister/Genre';
+import LoginForm from './LoginForm';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -22,6 +21,8 @@ class RegisterForm extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    if (props.chooseForm)
+      console.log("de");
   }
   
   nextStep = () => {
@@ -64,6 +65,7 @@ class RegisterForm extends Component {
       },
       body: JSON.stringify(this.state)
     })
+    this.nextStep();
     console.log(this.state);
   }
   
@@ -72,6 +74,8 @@ class RegisterForm extends Component {
     const { firstName, lastName, email, password} = this.state;
     const values = { firstName, lastName, email, password };
     switch(step) {
+      case 0:
+          return <LoginForm />
       case 1:
           return <Mail 
           nextStep={this.nextStep} 
@@ -120,7 +124,7 @@ class RegisterForm extends Component {
            </Button>
                </form>
       case 7:
-          return <Success />
+          return <h3 align="center">vous avez recu un mail de Confirmation</h3>
       default:
           return <h1>oups</h1>
           

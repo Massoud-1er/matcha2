@@ -29,7 +29,7 @@ class Browse extends Component {
             var obj = JSON.parse(this.state.data);
             return (
                 <div>
-                    <NavBar />
+                    {/* <NavBar /> */}
                     <AddCard props={obj[0]} />
                     <AddCard props={obj[1]} />
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, List } from 'semantic-ui-react';
+import { List } from 'semantic-ui-react';
 
 class Confirmation extends Component{
     saveAndContinue = (e) => {
@@ -13,7 +13,7 @@ class Confirmation extends Component{
     }
 
     render(){
-        const {values: { firstName, lastName, email, age, city, country }} = this.props;
+        const {values: { firstName, lastName, email, age }} = this.props;
 
         return(
             <div>

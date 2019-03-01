@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
-import { MDBContainer, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn } from 'mdbreact';
+import { Form } from 'semantic-ui-react';
+import { MDBContainer, MDBCol, MDBCardBody, MDBInput, MDBBtn } from 'mdbreact';
 
 class Bio extends Component {
 
@@ -14,12 +14,12 @@ class Bio extends Component {
     }
 
     render(){
-        const { values } = this.props;
+        // const { values } = this.props;
         return(
             <Form color='green' >
- <MDBContainer>
+ <MDBContainer align="center">
         <MDBCol md="18">
-          <MDBCard>
+          {/* <MDBCard> */}
             <MDBCardBody className="mx-4">
               <div className="text-center">
                 <h3 className="dark-grey-text mb-5">
@@ -37,7 +37,7 @@ class Bio extends Component {
              <MDBBtn onClick={this.back} color="primary" rounded>Back</MDBBtn> 
              <MDBBtn onClick={this.saveAndContinue} color="primary" rounded>Save And Continue</MDBBtn>
             </MDBCardBody>
-          </MDBCard>
+          {/* </MDBCard> */}
         </MDBCol>
     </MDBContainer>
 

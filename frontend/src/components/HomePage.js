@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './HomePageStyle.css';
 import RegisterForm from '../Account/RegisterForm'
+import LoginForm from '../Account/LoginForm';
 
-function HomePage() {
-    return (
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+     chooseForm: 0
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+    handleSubmit = () => {
+      var value = 1;
+      if (this.state.chooseForm === 1)
+          value = 0;
+      this.setState({chooseForm: value});
+    }
+  
+  render() {
+    console.log(this.state.chooseForm);
+
+      return (
         <div>
-        <section class="section parallax parallax-1">
-  <div class="container">
-  <div class="regis">
-    <RegisterForm />
+        <section className="section parallax parallax-1">
+          <button onClick={this.handleSubmit}type="submit" className="btn btn-primary">login</button>
+  <div className="container">
+  <div className="regis">
+  {/* <LoginForm /> */}
+    <RegisterForm chooseForm = {this.state.chooseForm}/>
+
     </div>
     <h1>matcha</h1>
   </div>
 </section>
-<section class="section content">
-  <div class="container">
+<section className="section content">
+  <div className="container">
     <h2>connecte toi</h2>
   </div>
 </section>
@@ -52,6 +73,7 @@ function HomePage() {
    </section> */}
         </div>
     );
+}
 }
 
 export default HomePage;
