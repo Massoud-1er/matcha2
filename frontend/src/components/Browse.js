@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddCard from '../profile_match/AddCard';
 // import { MDBContainer, MDBRow, MDBRangeInput, MDBCard, MDBCol, MDBCardBody, MDBCardTitle, MDBCardImage, MDBIcon } from 'mdbreact';
-
+import NavBar from './NavBar';
 
 class Browse extends Component {
     state = {
@@ -29,11 +29,9 @@ class Browse extends Component {
             var obj = JSON.parse(this.state.data);
             return (
                 <div>
-                    dede
-                 {/* <h2>Profile</h2> */}
+                    <NavBar />
                     <AddCard props={obj[0]} />
                     <AddCard props={obj[1]} />
-                    {/* <SliderPage /> */}
                 </div>
             );
         }

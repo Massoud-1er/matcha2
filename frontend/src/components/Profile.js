@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AddCard from '../profile_match/AddCard';
 // import { exists } from 'fs';
+import NavBar from './NavBar';
+
 
 class Profile extends Component {
     state = {
@@ -28,7 +30,8 @@ class Profile extends Component {
                var obj = JSON.parse(this.state.data)[0];
                // console.log(obj);
                 return (
-                    <div>
+                   <div>
+                       <NavBar />
                     <h2>Profile</h2>
                     <AddCard props = {obj}/>
                     </div>

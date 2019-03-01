@@ -17,20 +17,6 @@ class Birthdate extends Component {
         const { values } = this.props;
         return(
             <Form color='green' >
-                {/* <h1 className="ui centered">Birthdate</h1>
-    <Form.Field>
-    <label>Birthdate</label>
-    <input
-    name="birthdate"
-    type='birthdate'
-    placeholder='birthdate'
-    onChange={this.props.handleChange('birthdate')}
-    defaultValue={values.email}
-    />
-</Form.Field>
-<Button onClick={this.back}>Back</Button> 
-<Button onClick={this.saveAndContinue}>Save And Continue </Button> */}
-
  <MDBContainer>
         <MDBCol md="6">
           <MDBCard>

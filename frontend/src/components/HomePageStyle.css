@@ -1,5 +1,19 @@
+html, body {
+  margin: 0;
+  height:100%;
+  width:100%;
+  padding:0;
+}
+.regis {
+  position: absolute;
+  margin-top: 20vh;
+  height: 50vh;
+  width: 70vh;
+  align-content: center;
+}
 .container {
-    max-width: 960px;
+
+    max-height: 100vh;
     margin: 0 auto;
   }
   section.section:last-child {
@@ -22,7 +36,8 @@
     padding: 40px 0;
   }
   section.section.parallax {
-    height: 600px;
+    height: 100%;
+    width: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -31,14 +46,14 @@
   section.section.parallax h1 {
     color: rgba(255, 255, 255, 0.8);
     font-size: 48px;
-    line-height: 600px;
+    line-height: 1600px;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   section.section.parallax-1 {
-    background-image: url("https://assets.teenvogue.com/photos/56afec6b0d9a339972e95d92/16:9/w_1280,c_limit/valentines-dates.jpg");
+     background-image: url("https://assets.teenvogue.com/photos/56afec6b0d9a339972e95d92/16:9/w_1280,c_limit/valentines-dates.jpg"); 
   }
   section.section.parallax-2 {
     background-image: url("https://www.yourtango.com/sites/default/files/styles/listing_big/public/image_blog/double_date.jpeg?itok=SAVKg2Eh");

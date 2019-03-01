@@ -8,10 +8,10 @@ const options = {
   position: positions.TOP_CENTER
 };
 
-const Appi = () => (
+const Notif = () => (
   <Provider template={AlertTemplate} {...options}>
     <NotifAlert />
   </Provider>
 );
 
-export default Appi;
+export default Notif;

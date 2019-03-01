@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar';
+import Routing from './components/Routing';
 // import ModalBox from './profile_match/ModalBox';
 // import ModalBoxB from './profile_match/ModalBoxBis';
 // import ControlledCarousel from './profile_match/carousel';
@@ -31,7 +31,8 @@ state = {
     //   name: "test"
     // }
     return (
-      <div><NavBar/>
+      <div>
+        <Routing/>
       <p className="App-intro">{this.state.data}</p>
       <span>
         {/* <ControlledCarousel/> */}
