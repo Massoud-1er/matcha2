@@ -6,7 +6,6 @@ import Birthdate from '../components/multiStepRegister/Birthdate';
 import Password from '../components/multiStepRegister/Password';
 import Bio from '../components/multiStepRegister/Bio';
 import Genre from '../components/multiStepRegister/Genre';
-import LoginForm from './LoginForm';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -21,8 +20,6 @@ class RegisterForm extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    if (props.chooseForm)
-      console.log("de");
   }
   
   nextStep = () => {
@@ -70,12 +67,11 @@ class RegisterForm extends Component {
   }
   
   render() {
+  
     const {step} = this.state;
     const { firstName, lastName, email, password} = this.state;
     const values = { firstName, lastName, email, password };
     switch(step) {
-      case 0:
-          return <LoginForm />
       case 1:
           return <Mail 
           nextStep={this.nextStep} 

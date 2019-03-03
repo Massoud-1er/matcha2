@@ -36,7 +36,7 @@ class Mail extends Component {
             <MDBCardBody className="mx-4">
               <div className="text-center">
                 <h3 className="dark-grey-text mb-5">
-                  <strong>Inscrit toi !</strong>
+                  <strong>Inscris-toi !</strong>
                 </h3>
               </div>
               <MDBInput

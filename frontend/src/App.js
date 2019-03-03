@@ -34,10 +34,6 @@ state = {
       <div>
         <Routing/>
       <p className="App-intro">{this.state.data}</p>
-      <span>
-        {/* <ControlledCarousel/> */}
-        {/* <ModalBox /> */}
-      </span>
       </div>
     );
   }

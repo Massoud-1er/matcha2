@@ -7,7 +7,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     chooseForm: 0
+     chooseForm: 1
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,12 +24,19 @@ class HomePage extends Component {
       return (
         <div>
         <section className="section parallax parallax-1">
-          <button onClick={this.handleSubmit}type="submit" className="btn btn-primary">login</button>
+          <button onClick={this.handleSubmit}type="submit" className="btn btn-primary">
+          { this.state.chooseForm == 1 ?
+          "login" : 
+          "register"}
+          </button>
   <div className="container">
   <div className="regis">
-  {/* <LoginForm /> */}
-    <RegisterForm chooseForm = {this.state.chooseForm}/>
-
+        {
+          this.state.chooseForm == 1 ?
+          <RegisterForm chooseForm = {this.state.chooseForm}/>
+          :
+          <LoginForm/>
+        }
     </div>
     <h1>matcha</h1>
   </div>

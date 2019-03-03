@@ -5,7 +5,6 @@ class Contact extends Component {
   render() {
     return (
         <div>
-          <NavBar />
           <h2>Contact</h2>
         </div>
     );

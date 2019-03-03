@@ -31,7 +31,6 @@ class Profile extends Component {
                // console.log(obj);
                 return (
                    <div>
-                       <NavBar />
                     <h2>Profile</h2>
                     <AddCard props = {obj}/>
                     </div>
