@@ -4,10 +4,35 @@ html, body {
   width:100%;
   padding:0;
 }
+li {
+  list-style: none; 
+}
+label{
+  font-size: 20px;
+}
+.leForm{
+  background-color: #63bd19a4;
+}
+.col1 {
+  margin-left: 30px;
+}
+.cardList {
+  display: inline;
+  margin: 10px;
+}
+.form-control {
+  width: 50px;
+}
 .grid-container {
   grid-gap: 2px 5px;
-  background-color: rgb(100, 16, 16);
   padding: 50px;
+}
+.row1 {
+  margin-left: 7vw;
+  margin-right: 7vw;
+}
+.form-control{
+  display: inline;
 }
 .regis {
   position: absolute;
@@ -17,10 +42,42 @@ html, body {
   align-content: center;
 }
 .container {
-
-    max-height: 100vh;
-    margin: 0 auto;
+  max-height: 100vh;
+  margin: 0 auto;
   }
+.ring-container {
+  position: relative;
+  margin-left: 100px;
+  margin-top: 0px;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  background-color: #62bd19;
+  border-radius: 50%;
+  position: absolute;
+  top: 23px;
+  left: 23px;
+}
+
+.ringring {
+  border: 3px solid #62bd19;
+  -webkit-border-radius: 30px;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  -webkit-animation: pulsate 1s ease-out;
+  -webkit-animation-iteration-count: infinite; 
+  opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1);opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.2, 1.2);opacity: 0.0;}
+}
   section.section:last-child {
     margin-bottom: 0;
   }
@@ -65,6 +122,9 @@ html, body {
   }
   section.section.parallax-3 {
     background-image: url("https://metromorphos.files.wordpress.com/2014/02/picnic-date.jpg");
+  }
+  section.section.parallax-4 {background-image: 
+    url('https://c8.alamy.com/compfr/ab3hm2/jesus-les-personnes-nues-homme-hommes-femme-femmes-peinture-ab3hm2.jpg');
   }
   @media all and (min-width: 600px) {
     section.section h2 {

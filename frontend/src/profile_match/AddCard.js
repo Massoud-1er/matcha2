@@ -10,6 +10,7 @@ console.log(props);
         name: props.props.first_name,
         intro: props.props.intro,
         desc : props.props.description,
+        age : props.props.age,
         photo: ["./natalie1.jpg", "./natalie2.jpg",  "./natalie3.jpg"]
       };
 

@@ -62,15 +62,22 @@ app.get('/Profile', (req, res) => {
   //res.send({ express: result});
 }});});
 
+
+
+
+
 //POUR RECUPERER INFOS DB POUR MATCHING
-app.get('/Browse', (req, res) => {
-  // console.log(res);
+app.use('/Browse', (req, res) => {
+  var sex = 1;
+  console.log('test de reception  ',req.body);
   var connection = require('./db/connect');
-  let sql = `SELECT * FROM profil WHERE sex = 1`;
-  connection.query(sql, (err, result) => {
+  let sql = `SELECT * FROM profil WHERE sex = 1 AND age BETWEEN 2 AND 4`; 
+  connection.query(sql, [sex, req.body.ageMin, req.body.ageMax], (err, result) => {
   if(err) throw err;
   else {
-  res.send({ express: JSON.stringify(result)});
+    console.log("le resultat: ", JSON.stringify(result));
+    res.send({ express: JSON.stringify(result)});
+    // res.send({ express: "dedededede"});
   //res.send({ express: result});
 }});});
 

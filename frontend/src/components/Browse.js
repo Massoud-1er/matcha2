@@ -7,183 +7,179 @@ import classnames from 'classnames';
 import './HomePageStyle.css';
 import Slider from 'react-smooth-range-input';
 
-class SearchBar extends Component {
-   constructor(props) {
-       super(props);
-       this.state = {
-        ageMin: 2,
-        ageMax: 3,
-        eloMin: 1,
-        eloMax: 3,
-        local: 5,
-       }
-   }
-
-   handleChange = () => {
-       this.setState({ ageMin: parseInt(this.ageMin.value)});
-       this.setState({ ageMax: parseInt(this.ageMax.value)});
-       this.setState({ eloMin: parseInt(this.eloMin.value)});
-       this.setState({ eloMax: parseInt(this.eloMax.value)});    
-   }
-
-    render() {
-    return (
-        <form>
-            <h2>renseignez vos preference</h2>
-  <div class="row">
-  <div class="col">
-    <label for="exampleFormControlSelect1">son age</label>
-    <select class="form-control" id="exampleFormControlSelect1" ref={select => this.ageMin = select} onChange={this.handleChange}>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-    <label for="exampleFormControlSelect1">à</label>
-    <select class="form-control" id="exampleFormControlSelect2" ref={select => this.ageMax = select} onChange={this.handleChange}>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-    <p>Distance:</p>
-    <Slider id="zob" 
-        value={this.state.local} min={1} max={100} 
-        onChange={local => this.setState({local: local})}
-    />
-    <p>{} kilometre</p>
-    <label for="exampleFormControlSelect1">son elo</label>
-    <select class="form-control" id="exampleFormControlSelect1" ref={select => this.eloMin = select} onChange={this.handleChange}>
-      <option>1 unité de elo</option>
-      <option>2 unité de elo</option>
-      <option>3 unité de elo</option>
-      <option>4 unité de elo</option>
-      <option>5 unité de elo</option>
-    </select>
-    <label for="exampleFormControlSelect1">à</label>
-    <select class="form-control" id="exampleFormControlSelect1" ref={select => this.eloMax = select} onChange={this.handleChange}>
-      <option>1 unité de elo</option>
-      <option>2 unité de elo</option>
-      <option>3 unité de elo</option>
-      <option>4 unité de elo</option>
-      <option>5 unité de elo</option>
-    </select>
-    {/* {console.log(document.getElementById('zob').value)} */}
-    {/* <Button onClick={() => {console.log(this.petType.value)}}>clicko</Button> */}
-    <Button onClick={() => {this.props.handleSearch(this.state)}} >appliquer les filtres</Button>
-  </div>
-  </div>
-</form>
-    )
-   }
-}
-
 class DisplaySearch extends Component {
     render() {
-        const list = this.props.data.map((elem) => <div className="col">
-        <AddCard props={elem} /></div> );
+        const list = this.props.data.map((elem) => <div className="col1"><li className="cardList">
+        <AddCard props={elem} /></li></div> );
         return (
-    <div class="grid-container">
-            <div className="row">
-            <ul>{list}</ul>
-            </div>
-            </div>
-            // <div class="grid-container">
-            // <div className="row">
-            //     <div className="col">
-            //         <AddCard props={this.props.data[0]} /></div>
-                
-            //     <div className="col">
-            //         <AddCard props={this.props.data[1]} /></div>
-            
-                /* <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div>
-                <div className="col">
-                    <AddCard props={this.props.data[1]} /></div> */
-                // </div>
-                // </div>
+    <div className="grid-container">
+            <ul>
+                <div className="row">
+                    {list}
+                    {list}
+                    {list}
+                    {list}
+                    {list}
+                    {list}
+                    {list}
+                    {list}
+                </div>
+            </ul>
+        </div>
             )
     }
 }
 
 class Browse extends Component {
-    state = {
-        ageMin: 20,
-        ageMax: 30,
-        eloMin: 10,
-        eloMax: 30,
+    constructor(props) {
+    super(props);
+    this.state = {
+        ageMin: 2,
+        ageMax: 3,
+        eloMin: 1,
+        eloMax: 3,
         local: 5,
         data: null
     };
-    componentDidMount() {
+    this.handleSubmit = this.handleSubmit.bind(this);
+}
+    componentWillMount() {
+        fetch('/Browse', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+          })
+    }
+
+
+    //receptionne
+    getInfo() {
         // Call our fetch function below once the component mounts
         this.callBackendAPI()
             .then(res => this.setState({ data: res.express }))
             .catch(err => console.log(err));
+        console.log('dans get info: ', this.state.data);
     }
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
     callBackendAPI = async () => {
         const response = await fetch('/Browse');
         const body = await response.json();
+        console.log('dans func de get', body);
         if (response.status !== 200) {
             throw Error(body.message)
         }
-        this.setState({ data: body });
-        // console.log(this.state.data);
+        // this.setState({ data: body });
         return body;
     };
-    handleSearch(data){
-        this.setState({ ageMin: data.ageMin})
-        this.setState({ ageMax: data.ageMax})
-        this.setState({ eloMin: data.eloMin})
-        this.setState({ eloMax: data.eloMax})
-        this.setState({ local: data.local})
+
+    componentDidMount()
+    {
+        this.getInfo();
+    }
+
+    //envoie
+    handleSubmit(e){
+        e.preventDefault();
+        fetch('/Browse', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.state)
+        })
+        this.getInfo();
+    }
+
+    handleChange = () => {
+        this.setState({ ageMin: parseInt(this.ageMin.value)});
+        this.setState({ ageMax: parseInt(this.ageMax.value)});
+        this.setState({ eloMin: parseInt(this.eloMin.value)});
+        this.setState({ eloMax: parseInt(this.eloMax.value)});    
     }
     
     render() {
-        // console.log(this.state);
+        console.log(this.state);
         if (typeof this.state.data === "string") {
             var obj = JSON.parse(this.state.data);
+            console.log('obj: ', obj);
             return (
                 <div>
-                <SearchBar 
-                handleSearch={this.handleSearch.bind(this)}
-                />
-                <DisplaySearch search={this.state} data={obj}/>
-                <br/>
 
-                    </div>
+        <section className="section parallax parallax-4">
+        {/* <div className="container"> */}
+{/* <div className="grid-container"> */}
+
+         <form className="leForm">
+  <div className="row1">
+  <div className="col">
+  
+    <h2>renseignez vos preference</h2>
+    <label>Son age &ensp; </label>
+    <select className="form-control" id="exampleFormControlSelect1"  
+        ref={select => this.ageMin = select} 
+        value={this.state.ageMin}
+        onChange={this.handleChange}>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option>
+    </select>
+  
+    <label>&ensp;à&ensp;</label>
+    <select className="form-control" id="exampleFormControlSelect2" 
+        ref={select => this.ageMax = select} 
+        value={this.state.ageMax}
+        onChange={this.handleChange}>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option>
+    </select>
+  
+    <label>&ensp;&ensp;&ensp;Son elo&ensp;</label>
+    <select className="form-control" id="exampleFormControlSelect3"  
+        ref={select => this.eloMin = select} 
+        value={this.state.eloMin}
+        onChange={this.handleChange}>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option>
+    </select>
+  
+    <label>&ensp;à&ensp;</label>
+    <select className="form-control" id="exampleFormControlSelect4" 
+        ref={select => this.eloMax = select} 
+        value={this.state.eloMax}
+        onChange={this.handleChange}>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option>
+    </select>
+
+    <br />
+    <br />
+        <label>La distance qui vous separes&ensp;</label>
+    <Slider
+        value={this.state.local} min={1} max={100} 
+        onChange={local => this.setState({local: local})}
+    />
+    <label>{this.state.local} kilometre</label>
+    <br />
+
+    <Button onClick={this.handleSubmit} >appliquer les filtres</Button>
+  </div>
+  </div>
+</form>
+            {/* {console.log(obj)} */}
+
+
+          <DisplaySearch search={this.state} data={obj}/>
+            {/* </div> */}
+            {/* </div> */}
+            </section>
+            </div>
             );
         }
         else
-            return null;
+            return <h1>oups</h1>;
     }
 }
 
