@@ -5,7 +5,7 @@ import About from './About';
 import Contact from './Contact';
 import Profile from './Profile';
 import Browse from './Browse';
-// import Notif from './Notif';
+import Notif from './Notif';
 import HomePage from './HomePage';
 import Register from './Register';
 import Login from './Login';
@@ -18,6 +18,7 @@ class Routing extends Component {
   <Router path="/" component={Routing} >
   <div>
     <NavBar />
+    {/* <Notif /> */}
     <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/contact' component={Contact} />

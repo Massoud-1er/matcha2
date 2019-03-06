@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AddCard from '../profile_match/AddCard';
 import { Button } from 'react-bootstrap';
-// import { MDBContainer, MDBRow, MDBRangeInput, MDBCard, MDBCol, MDBCardBody, MDBCardTitle, MDBCardImage, MDBIcon } from 'mdbreact';
 import NavBar from './NavBar';
 import classnames from 'classnames';
 import './HomePageStyle.css';
@@ -110,16 +109,14 @@ class Browse extends Component {
                 <div>
 
         <section className="section parallax parallax-4">
-        {/* <div className="container"> */}
-{/* <div className="grid-container"> */}
 
          <form className="leForm">
   <div className="row1">
   <div className="col">
-  
-    <h2>renseignez vos preference</h2>
+   
+    <h2>renseignez vos preferences</h2>
     <label>Son age &ensp; </label>
-    <select className="form-control" id="exampleFormControlSelect1"  
+    <select className="form-control inBrowse" id="exampleFormControlSelect1"  
         ref={select => this.ageMin = select} 
         value={this.state.ageMin}
         onChange={this.handleChange}>
@@ -128,7 +125,7 @@ class Browse extends Component {
     </select>
   
     <label>&ensp;à&ensp;</label>
-    <select className="form-control" id="exampleFormControlSelect2" 
+    <select className="form-control inBrowse" id="exampleFormControlSelect2" 
         ref={select => this.ageMax = select} 
         value={this.state.ageMax}
         onChange={this.handleChange}>
@@ -137,8 +134,8 @@ class Browse extends Component {
     </select>
   
     <label>&ensp;&ensp;&ensp;Son elo&ensp;</label>
-    <select className="form-control" id="exampleFormControlSelect3"  
-        ref={select => this.eloMin = select} 
+    <select className="form-control inBrowse" id="exampleFormControlSelect3"  
+        ref={select => this.eloMin = select}
         value={this.state.eloMin}
         onChange={this.handleChange}>
         <option>1</option><option>2</option><option>3</option>
@@ -146,7 +143,7 @@ class Browse extends Component {
     </select>
   
     <label>&ensp;à&ensp;</label>
-    <select className="form-control" id="exampleFormControlSelect4" 
+    <select className="form-control inBrowse" id="exampleFormControlSelect4" 
         ref={select => this.eloMax = select} 
         value={this.state.eloMax}
         onChange={this.handleChange}>
@@ -154,9 +151,24 @@ class Browse extends Component {
         <option>4</option><option>5</option>
     </select>
 
+    <div className="allHashtag">
+        <div className="hash">
+            <a href="#" className="hashLink"></a>
+        </div>
+        <div className="hash">
+            <a href="#" className="hashLink"></a>
+        </div>
+        <div className="hash">
+            <a href="#" className="hashLink"></a>
+        </div>
+        <div className="hash">
+            <a href="#" className="hashLink"></a>
+        </div>
+    </div>
+
     <br />
     <br />
-        <label>La distance qui vous separes&ensp;</label>
+        <label>La distance qui vous separe&ensp;</label>
     <Slider
         value={this.state.local} min={1} max={100} 
         onChange={local => this.setState({local: local})}
@@ -165,15 +177,14 @@ class Browse extends Component {
     <br />
 
     <Button onClick={this.handleSubmit} >appliquer les filtres</Button>
+    <br />
+    <br />
+    
   </div>
   </div>
 </form>
-            {/* {console.log(obj)} */}
-
 
           <DisplaySearch search={this.state} data={obj}/>
-            {/* </div> */}
-            {/* </div> */}
             </section>
             </div>
             );
@@ -184,79 +195,3 @@ class Browse extends Component {
 }
 
 export default Browse;
-
-//met en suggestion seulement les sex set a 1, qui pourrai etre les meuf
-//je dois aussi faire un array map pour tous les afficher
-
-// const SliderPage = () => {
-//     return (
-//       <MDBContainer>
-//         <MDBCol sm="4">
-//           <MDBCard>
-//             <MDBCardImage
-//               top
-//               src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg"
-//               overlay="white-slight"
-//               hover
-//               waves
-//               alt="Card image cap"
-//             />
-//             <MDBCardBody>
-//               <MDBCardTitle>Choose your slider option</MDBCardTitle>
-//               <hr />
-//               <MDBRow className="my-4" center>
-//                 <MDBIcon
-//                   far
-//                   className="font-weight-bold blue-text mr-2 mt-1"
-//                   icon="thumbs-down"
-//                 />
-//                 <MDBRangeInput
-//                   min={0}
-//                   max={100}
-//                   value={50}
-//                   formClassName="w-75"
-//                 />
-//                 <MDBIcon
-//                   far
-//                   className="font-weight-bold blue-text ml-2 mt-1"
-//                   icon="thumbs-up"
-//                 />
-//               </MDBRow>
-//               <MDBRow className="my-4" center>
-//                 <MDBIcon
-//                   className="font-weight-bold indigo-text mr-2 mt-1"
-//                   icon="dollar-sign"
-//                 />
-//                 <MDBRangeInput
-//                   min={0}
-//                   max={100}
-//                   value={50}
-//                   formClassName="w-75"
-//                 />
-//                 <MDBIcon
-//                   className="font-weight-bold indigo-text ml-2 mt-1"
-//                   icon="euro-sign"
-//                 />
-//               </MDBRow>
-//               <MDBRow className="my-4" center>
-//                 <MDBIcon
-//                   className="font-weight-bold indigo-text mr-2 mt-1"
-//                   icon="minus"
-//                 />
-//                 <MDBRangeInput
-//                   min={0}
-//                   max={100}
-//                   value={50}
-//                   formClassName="w-75"
-//                 />
-//                 <MDBIcon
-//                   className="font-weight-bold indigo-text ml-2 mt-1"
-//                   icon="plus"
-//                 />
-//               </MDBRow>
-//             </MDBCardBody>
-//           </MDBCard>
-//         </MDBCol>
-//       </MDBContainer>
-//     );
-// }

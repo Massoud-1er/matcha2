@@ -45,9 +45,6 @@ class LoginForm extends Component {
         <Form.Label>Email</Form.Label>
         <Form.Control name="email" type="email" placeholder="Enter your email adress" value={this.state.email}
             onChange={this.handleInputChange}/>
-        {/* <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-    </Form.Text> */}
       </Form.Group>
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>

@@ -10,8 +10,106 @@ li {
 label{
   font-size: 20px;
 }
+.allHashtag {
+  /* background-color: aqua; */
+  width: 400px;
+  height: 100px;
+  display: inline-block;
+}
+
+
+.hashLink {
+  color: rgb(83, 75, 75);
+  font: 14px/100% arial, sans-serif;
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 3px;
+}
+.hashLink:after {
+  content: 'X'; /* ANSI X letter */
+}
+.hash {
+  background: rgb(131, 127, 127);
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  float: left;
+  height: 20px;
+  margin: 20px;
+  position: relative;
+  width: 150px;
+}
+
+
+
+.sub {
+  position: absolute;
+  z-index:1;
+  box-shadow: 2px 2px 0 #BEBEBE;
+  width: 35%;
+  display:none;
+}
+
+ul.navb li:hover ul {
+  display: block;
+  float:none;
+}
+
+
+.theLink {
+  float: right;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  /* display: inline-block; */
+  /* text-align: left; */
+}
+.profilPic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.profilPicBig {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.theNav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.theNav li {
+  float: left;
+}
+
+.theNav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 24px 26px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.theNav li a:hover:not(.active) {
+  background-color: rgb(0, 0, 0);
+}
+
+
+.card {
+  border-radius: 8px;
+}
+.card-img-top {
+  border-radius: 8px;
+}
 .leForm{
-  background-color: #63bd19a4;
+  background-color: #fafafaad;
 }
 .col1 {
   margin-left: 30px;
@@ -20,7 +118,7 @@ label{
   display: inline;
   margin: 10px;
 }
-.form-control {
+.inBrowse {
   width: 50px;
 }
 .grid-container {
